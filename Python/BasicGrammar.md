@@ -212,18 +212,21 @@ h2 = example("h2", 17, "여자")
 # h1 님의 나이는 17 세 이고 성별은 남자 입니다.
 # h2 님의 나이는 17 세 이고 성별은 여자 입니다.
 ```
+---
 ## **멤버 변수**
 * 멤버 변수는 (변수명).(멤버 변수) 로 사용 가능함
+---
 ## **메소드**
+* 클래스가 갖고 있는 기능이다. 데이터와 멤버 변수에 대한 접근 권한을 갖는다.
 ```python
 class example:
-    def __init__(self,name,gender,age):
+    def __init__(self, name, gender, age):
         self.name = name
         self.gender = gender
         self.age = age
 
 class example2:
-    def __init__(self,name,gender,age):
+    def __init__(self, name, gender, age):
         self.name = name
         self.gender = gender
         self.age = age
@@ -232,4 +235,135 @@ class example2:
         print("{0} 님이 {1} 라고 말함".format(self.name, say))
     # self.(변수명)은 멤버변수를 쓴다는것이고
     # (변수명)은 전달받은값 그대로를 쓴다는것
+```
+---
+## **상속**
+```python
+class example:
+    def __init__(self, name):
+        self.name = name
+
+class example2(example):
+        def __init__(self, name, gender, age):
+        # self.name = name 를 정의할 필요가 없음
+        example.__init__(self.name)
+        self.gender = gender
+        self.age = age
+# example2가 example 클래스를 상속받음
+```
+## **다중상속**
+```python
+class example1:
+    def __init__(self, name):
+        self.name = name
+
+class example2(example1):
+        def __init__(self, name, gender, age):
+        # self.name = name 를 정의할 필요가 없음
+        example1.__init__(self.name)
+        self.gender = gender
+        self.age = age
+# example2가 example1 클래스를 상속받음
+
+class example3:
+    def __init__(self, tall):
+        self.tall = tall
+
+class exmaple4(example1, example3):
+    def __init__(self, name, tall):
+        example1.__init__(self, name)
+        example3.__init__(self, tall)
+# example4 가 exmple1, example3 를 상속받아서 사용함
+```
+---
+## **메소드 오버라이딩**
+* 자식 클래스에서 정의한 메소드를 새롭게 정의하여 사용하는것
+```python
+class example1:
+    def __init__(self, name, gender, age):
+        self.name = name
+        self.gender = gender
+        self.age = age
+
+    def say(self, say):
+        print("{0} 님이 {1} 라고 말함".format(self.name, say))
+
+example_human = exmaple1("example", "남자" 17) # 클래스로 변수 선언
+example.say(example.name, "test") # 메소드 오버라이딩
+```
+---
+## **pass**
+```python
+class example1:
+    def __init__(self, name, gender, age):
+        self.name = name
+        self.gender = gender
+        self.age = age
+
+class example2(example1):
+    def __init__(self, name, gender, age):
+        pass # 아무것도 실행하지않고 넘어감
+```
+* pass 는 클래스 뿐만 아니라 함수에서도 사용이 가능함
+---
+## **super**
+```python
+class example1:
+    def __init__(self, name, gender, age):
+        self.name = name
+        self.gender = gender
+        self.age = age
+
+class example2(example1):
+    def __init__(self, name, gender, age):
+        # example1.__init__(self, name, gender, age)
+        super().__init__(name, gender, age)
+        # super() 는 self 를 사용하지않음
+```
+* super() 는 다중상속에서 문제가 발생함
+    * def (클래스명)._init__ 으로 해결가능 (단 self 를 포함)
+---
+## **예외처리**
+* 어떠한 에러가 발생했을때 그 에러에 대한 처리를 하는것
+```python
+try:
+    #실행할 문장들
+except (에러명1):
+    #에러 발생시 실행할 문장
+except (에러명2):
+    #여러 에러에 대비 가능
+except:
+    #원하는 에러가 아닌 나머지 오류에 대한 대비
+```
+---
+## **에러 발생시키기**
+* 의도적으로 에러가 필요할때 발생시킬수 있음
+```python
+try:
+    #실행할 문장들
+    raise (에러명) #에러명에 해당하는 에러를 발생
+except (에러명):
+    #에러 발생시 실행할 문장들
+```
+---
+## **사용자 정의 예외처리**
+* 사용자가 원하는 에러를 만들어서 필요할때 사용 가능
+```python
+class exampleError(Exception):
+    # Error 클래스 내의 내용
+try:
+    #실행 문장
+    raise exampleError
+except exmapleError:
+    #사용자 정의 에러 발생시 실행할 문장
+```
+---
+## **finally**
+* try 문 내의 마지막에 쓸수있음
+```python
+try:
+    #내용
+finally:
+    #try 문이 끝날때 실행할 내용
+    #에러가 발생해도 finally문은 실행 됨
 ```
