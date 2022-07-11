@@ -8,6 +8,7 @@
   
 ## INDEX  
 
-1. ### [Python](https://github.com/Junho-06/TIL/tree/master/Python)
-2. ### [Network](https://github.com/Junho-06/TIL/tree/master/Network)    
+1. ### [Python](https://github.com/Junho-06/TIL/tree/master/Python)  
+4. ### [Django](https://github.com/Junho-06/TIL/tree/master/Django)  
+2. ### [Network](https://github.com/Junho-06/TIL/tree/master/Network)  
 3. ### [Linux](https://github.com/Junho-06/TIL/tree/master/Linux)  
