@@ -30,6 +30,63 @@
     * 단지 기능이 존재하기만 하는것이 아니라 잘 만들어져 있음
     * 우리가 필요로하는 웹 프로그램 개발을 위한 도구와 기능이 대부분 준비되어 있음
 ---
+## **장고의 작동흐름**
+* ![장고흐름](https://eunhyejung.github.io/assets/contents/django-content01.PNG)
+* 웹 브라우저에서 어떤 이벤트가 발생한다고 하자
+    * (여기서 이벤트는 특정 url을 클릭한다던지, 폼에 데이터를 입력해 보내는 등의 액션을 뜻함)
+* 이벤트가 발생하면 장고 서버로 request(이벤트를 처리해달라)가 들어오게 됨
+* 장고 서버로 들어온 이벤트에 대해 URL 디스패처가 URL을 분석해서, 적합한 VIEW로 이 요청을 보냄
+* VIEW는 사용자 요청을 받아 데이터 베이스 어디에 접근해서 어떤 데이터를 가공할것인지 MODEL에게 알려줌
+* MODEL은 DB와 커넥션을 해서 필요한 DB 연산을 처리함
+* DB가 다시 모델로 결과값을 보내주면 모델이 이것을 뷰로 전달함
+* VIEW는 우리에게 보내줄 데이터를 다시 TEMPLATE에게 전달해줌
+* TEMPLATE는 .js나 .html과 같은 페이지를 만들어서 웹브라우저에게 넘겨줌
+---
+## **장고 기본 파일 구조**
+![파일구조](https://eunhyejung.github.io/assets/contents/django-content02.PNG)
+* 장고 프로젝트를 생성하게 되면 위 사진 처럼 다양한 파일들이 생성됨
+* 주로 녹색 네모들이 우리가 실질적으로 다루는것들이라고 생각하면됨
+* 미들웨어 라는것은 우리가 느낄수는 없지만 장고 뒤에서 다양한 처리를 도와줌
+* WSGI는 웹서버와 장고를 적절하게 결합해주는 역할을 담당함
+* urls.py파일은 정규표현식으로 구성되어 있음
+* **Project와 App**
+* 하나의 프로젝트가 하나의 웹사이트라고 생각하면 됨
+* 프로젝트 안에는 다양한 기능들이 있고, 어떤 의미있는 기능들을 App으로 관리함
+* 프로젝트 생성시 아래와 같은 파일구족 만들어짐
+![파일구조1](https://eunhyejung.github.io/assets/contents/django-content03.PNG)
+* ```setting.py```는 전체 프로젝트를 관리하느 설정파일임
+* admin 파일은 관리자 권한을 가진 사용자가 볼 수 있는 페이지에 대한 내용을 다룸
+* models.py는 DB와 관련된 다양한 역할을 수행함
+* view는 db로 가져온 데이터를 적절히 가공하는 역할을 담당
+* migrations는 db관련 폴더
+* **Setting.py**
+* Setting.py는 프로젝트 환경설정에 대한 내용을 담고있음
+* DEBUG
+디버그 설정 개발시에는 true값으로 지정해놓고 실제 서비스 배포시에는 false로 설정
+* INSTALLED_APPS
+    * pip로 설치한 앱 또는 본인이 만든 app추가
+* MIDDLEWARE_CLASSES
+    * request와 response 사이의 주요 기능 레이어
+    (인증, 보안관련 내용을 다룸)
+* TEMPLATES
+    * 장고 템플릿 관련 설정, 실제 뷰(html)를 관리
+* DATABASES
+    * 데이터베이스 엔진의 연결 설정
+* STATIC_URL
+    * 정적파일의 URL(css, javascript, image 등)
+* **Manage.py**
+* 프로젝트 관리를 도와줌, 다른 설치작업없이 컴퓨터에서 웹서버 실행 가능
+* 주요 명령어
+
+    * ```startapp``` : 앱 생성
+    * ```runserver``` : 서버 실행
+    * ```createsuperuser``` : 관리자 생성
+    * ```makemigrations app``` : app 모델의 변경사항 체크
+    * ```migrate``` : 변경사항을 DB에 반영
+    * ```shell``` : 쉘을 통해 데이터를 확인
+    * ```collectstatic``` : static 파일을 한곳에 모음.
+
+---
 ## **장고 개발환경 준비하기**
 * **파이썬 가상 환경 알아보기**
     * 파이썬 가상 환경은 파이썬 프로젝트를 진행할 때 독립된 환경을 만들어 주는 도구 임
