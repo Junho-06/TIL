@@ -6,9 +6,8 @@
 3. 열심히 적기 🔥
 ```
   
-### INDEX  
+## INDEX  
 
-* #### [Python](https://github.com/Junho-06/TIL/tree/master/Python)  
-* #### [Django](https://github.com/Junho-06/TIL/tree/master/Django)  
-* #### [Network](https://github.com/Junho-06/TIL/tree/master/Network)  
-* #### [Linux](https://github.com/Junho-06/TIL/tree/master/Linux)  
+* ### [Python](https://github.com/Junho-06/TIL/tree/master/Python)   
+* ### [Network](https://github.com/Junho-06/TIL/tree/master/Network)  
+* ### [Linux](https://github.com/Junho-06/TIL/tree/master/Linux)  
