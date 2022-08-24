@@ -102,3 +102,61 @@ break default func interface select case defer go map struct chan else goto pack
 6. 포인터연산자
 * 포인터연산자는 & 혹은 * 를 사용하여 해당 변수의 주소를 얻어내거나 이를 반대로 Dereference 할 때 사용함
 * Go는 포인터연산자를 제공하지만 포인터 산술 즉, 포인터에 더하고 빼는 기능은 제공하지 않음
+
+## 조건문
+1. if 문
+* GO 의 if 조건문은 조건식을 ```괄호 ( )```로 둘러 싸지 않아도 된다
+* 조건 블럭 시작 브레이스 ```{```를 반드시 if문과 같은 라인에 두어야 한다
+* if문의 조건식은 반드시 Boolean 식으로 표현되어야 한다
+* else if 문 또한 사용이 가능, if문과 같은 규칙을 지님
+* if문 조건식을 사용하기전에 간단한 문장을 함께 실행할수 있음 
+    * 이 방식은 switch문, for문 등 Go의 여러 문법에서 사용이 가능함
+```Go
+if val := i * 2; val < max {
+    println(val)
+}
+ 
+// 아래 처럼 사용하면 Scope 벗어나 에러
+val++
+```
+
+2. Switch 문
+* 다른 언어들과 비슷하게 switch 문 뒤에 하나의 변수를 지정하고 case 문에 해당 변수가 가질수 있는 값들을 지정하면 됨
+* 복수개의 case 값들이 있을 경우는 콤마를 써서 나열 가능
+* 다른 언어의 case문은 break를 쓰지 않는 한 다음 case로 이동하지만, Go는 다음 case로 가지 않음
+* 다른 언어의 switch는 일반적으로 변수의 값을 기준으로 case로 분기하지만, Go는 기 변수의 Type에 따라 case로 분기할 수 있음
+```Go
+switch v.(type) {
+case int:
+    println("int")
+case bool:
+    println("bool")
+case string:
+    println("string")
+default:
+    println("unknown")
+}   
+```
+* 다른언어처럼 계속 다음 case문 코드 블럭들을 실행하게 하려면 fallthrough 문을 명시해 주면됨
+
+## 반복문
+1. for문
+* Go는 반복문에 for 하나 밖에 없다
+* for 또한 ```괄호 ( )```를 생략함
+    * 괄호를 쓰면 에러가 남
+
+2. for문 조건식만 쓰는 for 루프
+* Go에서 for 루프는 초기값과 증감식을 생략하고 조건식만 사용 가능함, 다른 언어의 while 루프와 같은 느낌
+
+3. for문 무한루프
+* 무한루프를 만들려면 초기값 조건식 증감 모두를 생략하면 됨
+
+4. for range문
+* for range 문은 컬렉션으로 부터 한 요소씩 가져와 차례로 for 블럭의 문장들을 실행함, 다른 언어의 foreach와 비슷
+* for range문은 ```for 인덱스, 요소값 := range 컬렉션``` 같이 for 루프를 구성하는데, range 키워드 다음의 컬렉션으로부터 하나씩 요소를 리턴해서 그 요소의 위치인덱스와 값을 for 키워드 다음의 2개의 변수에 각각 할당한다
+
+5. break, continue, goto문
+* 경우에 따라 for 루프내에서 즉시 빠져나올 필요가 있는데 이때 break문을 사용함
+* for 루프 중간에서 나머지 문장들을 실행하지 않고 for 루프 시작부분으로 바로 가려면 continue문을 사용
+* 임의의 문장으로 이동하기 위해서 goto문을 사용
+* break문은 보통 단독으로 사용되지만, 경우에 따라 break레이블 과 같이 사용하여 지정된 레이블로 이동할 수도 있다
