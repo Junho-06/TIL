@@ -4,10 +4,10 @@ while True:
     a, b = map(int, input().split())
     if a == 0 and b == 0:
         break
-    if a % b == 0:
+    if b % a == 0:
         print("factor")
         continue
-    elif b % a == 0:
+    elif a % b == 0:
         print("multiple")
         continue
     else:
