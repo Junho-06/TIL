@@ -2,6 +2,7 @@
 ---
 ### VPC란
 * AWS 클라우드에서 논리적으로 격리된 네트워크 공간을 할당하여 가상 네트워크에서 AWS 리소스를 이용할 수 있는 서비스
+![VPC구조](https://velog.velcdn.com/images%2Fmay_soouu%2Fpost%2F85314b79-7369-461c-bd0d-0725278fe355%2Faws.jpeg)
 * VPC는 AWS클라우드에서 다른 가상 네트워크와 논리적으로 분리되어 있음
 ---
 ### VPC특징
